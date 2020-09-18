@@ -1,3 +1,7 @@
 __pycache__
 *.pyc
 vqa
+*.pth
+/logs
+/.vscode
+/.ipynb_checkpoints

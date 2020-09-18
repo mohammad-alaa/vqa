@@ -41,9 +41,10 @@ def create_coco_loader(*paths):
 
 
 def main():
-    cudnn.benchmark = True
+    # cudnn.benchmark = True
 
-    net = Net().cuda()
+    # net = Net().cuda()
+    net = Net()
     net.eval()
 
     loader = create_coco_loader(config.train_path, config.val_path)
@@ -60,7 +61,8 @@ def main():
 
         i = j = 0
         for ids, imgs in tqdm(loader):
-            imgs = Variable(imgs.cuda(async=True), volatile=True)
+            # imgs = Variable(imgs.cuda(async=True), volatile=True)
+            imgs = Variable(imgs, volatile=True)
             out = net(imgs)
 
             j = i + imgs.size(0)
