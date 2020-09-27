@@ -17,6 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class Body(BaseModel):
     question: str
     img_base64: str
@@ -24,10 +25,10 @@ class Body(BaseModel):
 
 @app.get('/')
 def root():
-    return {'message':'hello world'}
+    return {'message': 'hello world'}
 
 
 @app.post("/vqa")
-def encode_file(body: Body):
-    ans = predict(body.question, body.img_base64)
+async def encode_file(body: Body):
+    ans = await predict(text=body.question, img_base64=body.img_base64)
     return {'answer': ans}
